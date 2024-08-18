@@ -37,7 +37,7 @@ Available variables are listed below, along with default values (see `defaults/m
       - apt-transport-https
       - gnupg
 
-    #URL of docker repo key
+    #URL docker repo key
     docker_key_url: https://download.docker.com/linux/ubuntu/gpg
 
     #Docker repo URL
