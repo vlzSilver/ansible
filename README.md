@@ -10,6 +10,8 @@ Available variables are listed below, along with default values (see `defaults/m
 
     # Edition can be one of: 'ce' (Community Edition) or 'ee' (Enterprise Edition).
     docker_edition: 'ce'
+
+    #List of packages for install Docker
     docker_packages:
         - "docker-{{ docker_edition }}"
         - "docker-{{ docker_edition }}-cli"
@@ -17,7 +19,29 @@ Available variables are listed below, along with default values (see `defaults/m
         - "docker-buildx-plugin"
         - "docker-compose-plugin"
 
-The `docker_edition` should be either `ce` (Community Edition) or `ee` (Enterprise Edition). 
+    #List of old docker packages to remove
+    docker_old_packages:
+      - docker.io
+      - docker-dcc
+      - docker-compose
+      - docker-compose-v2
+      - podman-docker
+      - conainerd
+      - runc
+
+    #List of required packages before installing Docker
+    docker_prerequiestes_packages:
+      - curl
+      - software-properties-common
+      - ca-certificates
+      - apt-transport-https
+      - gnupg
+
+    #URL of docker repo key
+    docker_key_url: https://download.docker.com/linux/ubuntu/gpg
+
+    #Docker repo URL
+    docker_repo_url: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
 
 For remove Docker use:
 
