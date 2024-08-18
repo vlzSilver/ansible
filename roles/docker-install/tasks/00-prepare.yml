@@ -37,7 +37,7 @@
     path: /etc/apt/keyrings/docker.asc
     mode: '0644'
 
-- name: Add specified repository into sources list using specified filename
+- name: Add specified repository into sources list using specified GPG key
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
