@@ -1,0 +1,23 @@
+---
+
+- name: Import tasks for prepare OS
+  ansible.builtin.import_tasks:
+    file: "00-prepare.yml"
+  tags:
+    - docker
+
+- name: Import tasks for install Docker
+  ansible.builtin.import_tasks:
+    file: "10-install-docker.yml"
+  tags:
+    - docker
+
+- name: Import tasks for remove Docker
+  ansible.builtin.import_tasks:
+    file: "99-remove-docker.yml"
+  tags:
+    - never
+    - docker-node-clean
+  when:
+    - "'docker-node-clean' in ansible_run_tags"
+

@@ -1,0 +1,15 @@
+---
+
+- name: Install Docker
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  loop: "{{ docker_install_packages }}"
+
+- name: Check docker is started
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
+

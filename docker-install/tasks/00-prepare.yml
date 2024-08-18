@@ -1,0 +1,37 @@
+---
+
+- name: Del Old Docker to prevent conflicts (Recommends from docker.io) with full list in console
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ docker_old_packages }}"
+
+- name: Install Prerequiestes
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ docker_prerequiestes_packages }}"
+
+- name: Add Docker GPG Key
+  ansible.builtin.apt_key:
+    url: "{{ docker_key_url }}"
+    state: present
+
+- name: Add specified repository into sources list using specified filename
+  ansible.builtin.apt_repository:
+    repo: "{{ docker_repo_url }}"
+    state: present
+    filename: docker
+
+- name: Check docker group exist
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add user to Docker group without excluding from another groups (append = yes)
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  loop: "{{ users_add_to_docker }}"

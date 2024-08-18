@@ -1,0 +1,42 @@
+---
+
+###'ce' (Community Edition) or 'ee' (Enterprise Edition)
+docker_edition: ce
+
+
+users_add_to_docker:
+  - vlzsilver
+
+###List of old docker packages to remove
+docker_old_packages:
+  - docker.io
+  - docker-dcc
+  - docker-compose
+  - docker-compose-v2
+  - podman-docker
+  - conainerd
+  - runc
+
+###List of required packages before installing Docker
+docker_prerequiestes_packages:
+  - curl
+  - software-properties-common
+  - ca-certificates
+  - apt-transport-https
+  - gnupg
+
+###URL of docker repo key
+docker_key_url: https://download.docker.com/linux/ubuntu/gpg
+
+
+###Docker repo URL
+docker_repo_url: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+
+
+###List of packages for install Docker
+docker_install_packages:
+  - "docker-{{ docker_edition }}"
+  - "docker-{{ docker_edition }}-cli"
+  - "containerd.io"
+  - "docker-buildx-plugin"
+  - "docker-compose-plugin"
