@@ -19,5 +19,6 @@ Available variables are listed below, along with default values (see `defaults/m
 
 The `docker_edition` should be either `ce` (Community Edition) or `ee` (Enterprise Edition). 
 
-For remove docker use 
+For remove docker use
+
     ansible-playbook prod-docker.yml -t docker-node-clean
