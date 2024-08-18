@@ -1,0 +1,8 @@
+---
+
+- name: Deplay Docker
+  hosts: DOCKERVM
+  become: true
+
+  roles:
+    - docker-install

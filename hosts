@@ -1,0 +1,11 @@
+---
+
+DOCKERVM:
+  hosts:
+    ubTest1:
+      ansible_host: 192.168.10.232
+      ansible_user: vlzsilver
+
+    ubTest2:
+      ansible_host: 192.168.10.233
+      ansible_user: vlzsilver
