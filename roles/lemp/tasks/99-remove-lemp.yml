@@ -1,0 +1,32 @@
+---
+
+- name: Remove Packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ lemp_install_packages }}"
+
+- name: Ansible delete file glob
+  find:
+    paths: "{{ dest_folder }}"
+    patterns: "*.*"
+  register: files_to_delete
+
+- name: Delete Files  {{ item.path }}
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"
+
+- name: Disable && delete nginx site config
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/etc/nginx/sites-available/{{ nginx_site_conf_name }}"
+    - "/etc/nginx/sites-enabled/{{ nginx_site_conf_name }}"
+
+- name: Clean Apt
+  ansible.builtin.apt:
+    autoremove: true
+    autoclean: true

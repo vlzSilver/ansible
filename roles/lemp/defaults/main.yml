@@ -1,0 +1,20 @@
+---
+
+lemp_install_packages:
+  - nginx
+  - mysql-server
+  - mysql-client
+  - php-fpm
+  - php-mysql
+  - python3-pymysql
+
+dest_folder: /var/www/html
+
+nginx_port: 80
+
+mysql_user: "root"
+mysql_pass: "TestPas123#"
+
+nginx_site_conf_name: php-test
+
+test_server_site_name: php-test.local

@@ -1,0 +1,55 @@
+---
+
+- name: Set up mysql root user
+  community.mysql.mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_pass }}"
+    login_user: "{{ mysql_user }}"
+    login_password: "{{ mysql_pass }}"
+    check_implicit_admin: true
+    encrypted: false
+    login_unix_socket: "/var/run/mysqld/mysqld.sock" # если mysql работает через сокет, вместо коннекта через порт, то нужен этот путь
+
+- name: Create nginx config from template nginx.j2 to servers
+  ansible.builtin.template:
+    src: nginx.j2
+    dest: "/etc/nginx/sites-available/{{ nginx_site_conf_name }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Link confg file
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ nginx_site_conf_name }}"
+    dest: "/etc/nginx/sites-enabled/{{ nginx_site_conf_name }}"
+    state: link
+  notify:
+    - Restart Nginx
+
+
+- name: Disable default site
+  ansible.builtin.file:
+    path: "/etc/nginx/sites-enbaled/default"
+    state: absent
+  notify:
+    - Restart Nginx
+
+- name: Create index.php from template index.j2 to servers
+  ansible.builtin.template:
+    src: index.j2
+    dest: "{{ dest_folder }}/index.php"
+    owner: www-data
+    group: www-data
+    mode: 0555
+  notify:
+    - Restart Nginx
+
+- name: Create test_connection.php from template test-connection.j2 to servers
+  ansible.builtin.template:
+    src: test_connection.j2
+    dest: "{{ dest_folder }}/test_connection.php"
+    owner: www-data
+    group: www-data
+    mode: 0555
+  notify:
+    - Restart Nginx

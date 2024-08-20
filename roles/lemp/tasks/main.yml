@@ -1,0 +1,28 @@
+---
+
+- name: Import tasks for prepare
+  ansible.builtin.import_tasks:
+    file: "00-prepare.yml"
+  tags:
+    - lemp
+
+- name: Import task install
+  ansible.builtin.import_tasks:
+    file: "01-install.yml"
+  tags:
+    - lemp
+
+- name: Import task configuration
+  ansible.builtin.import_tasks:
+    file: "02-confguration.yml"
+  tags:
+    - lemp
+
+- name: Import tasks for remove LEMP
+  ansible.builtin.import_tasks:
+    file: "99-remove-lemp.yml"
+  tags:
+    - never
+    - lemp-node-clean
+  when:
+    - "'lemp-node-clean' in ansible_run_tags"

@@ -1,0 +1,8 @@
+---
+
+- name: Deploy LEMP
+  hosts: lemp_hosts
+  become: true
+
+  roles:
+    - lemp

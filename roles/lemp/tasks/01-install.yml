@@ -1,0 +1,10 @@
+---
+
+- name: Install Packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+  loop: "{{ lemp_install_packages }}"
+  notify:
+    - Restart Nginx
