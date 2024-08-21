@@ -46,3 +46,28 @@ Available variables are listed below, along with default values (see `defaults/m
 For remove Docker use:
 
     ansible-playbook prod-docker.yml -t docker-node-clean
+
+
+### lemp
+Deploy LEPM (Linux Nginx PHP-FPM Mysql) with test site and mysql connection test
+
+Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+    lemp_install_packages:
+      - nginx
+      - mysql-server
+      - mysql-client
+      - php-fpm
+      - php-mysql
+      - python3-pymysql
+
+    dest_folder
+
+    nginx_port
+
+    mysql_user
+    mysql_pass
+
+    nginx_site_conf_name
+
+    test_server_site_name
