@@ -71,3 +71,8 @@ Available variables are listed below, along with default values (see `defaults/m
     nginx_site_conf_name
 
     test_server_site_name
+
+For remove Docker use:
+
+    ansible-playbook lemp.yml -t lemp-node-clean
+
