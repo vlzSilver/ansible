@@ -1,0 +1,34 @@
+---
+
+- name: Show what type of data the bands variable is made up of
+  ansible.builtin.debug:
+    msg: "{{ item.1 }}  -  {{ item.0.name }}  -   {{ item.0.rule }}"
+  with_subelements:
+    - "{{ ports_control }}"
+    - number_port
+
+- name: Check Installed UFW
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+
+- name: Start service ufw, if not started
+  ansible.builtin.service:
+    name: ufw
+    state: started
+  register: __result_ufw_started
+
+- name: Show result started
+  ansible.builtin.debug:
+    var: __result_ufw_started.state
+
+- name: Try to enable
+  community.general.ufw:
+    state: enabled
+    policy: "{{ global_rule }}"
+  register: __result_ufw_enabling
+
+- name: Show result enabling if changed
+  ansible.builtin.debug:
+    var: __result_ufw_enabling
+  when: __result_ufw_enabling.changed == true

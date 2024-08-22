@@ -1,0 +1,5 @@
+---
+
+- name: Reset ufw config
+  ufw:
+    state: reset

@@ -1,0 +1,6 @@
+---
+
+- name: Reload ufw on change
+  ufw:
+    state: reloaded
+  when: __ports_rule_changed == true

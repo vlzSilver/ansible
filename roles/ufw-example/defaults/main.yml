@@ -1,0 +1,24 @@
+---
+
+ports_control:
+
+  - name: tcp
+    rule : allow
+    number_port:
+       - 80
+       - 443
+       - 22
+
+  - name: udp
+    rule : allow
+    number_port:
+       - 15699
+       - 15700
+
+  - name: tcp
+    rule : deny
+    number_port:
+       - 5051
+       - 8082
+
+global_rule: deny

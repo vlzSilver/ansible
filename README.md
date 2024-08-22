@@ -76,3 +76,33 @@ For remove Docker use:
 
     ansible-playbook lemp.yml -t lemp-node-clean
 
+
+### ufw-example
+This role is example how to use UFW rule by ansible
+
+Available variables are listed below, along with default values (see `defaults/main.yml`):
+    ports_control:
+      - name: tcp
+        rule : allow
+        number_port:
+          - 80
+          - 443
+          - 22
+
+      - name: udp
+        rule : allow
+        number_port:
+          - 15699
+          - 15700
+
+      - name: tcp
+        rule : deny
+        number_port:
+          - 5051
+          - 8082
+
+      global_rule: deny
+
+For remove Docker use:
+
+    ansible-playbook ufw.yml -t ufw-node-reset

@@ -1,0 +1,8 @@
+---
+
+- name: UFW test work
+  hosts: ubTest2
+  become: true
+
+  roles:
+    - ufw-example

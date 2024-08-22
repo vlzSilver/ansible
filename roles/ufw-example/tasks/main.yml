@@ -1,0 +1,22 @@
+---
+
+- name: Import tasks for prepare UFW service
+  ansible.builtin.import_tasks:
+    file: "00-prepare.yml"
+  tags:
+    - ufw-work
+
+- name: Import tasks for work with ufw port rule
+  ansible.builtin.import_tasks:
+    file: "01-port-work.yml"
+  tags:
+    - ufw-work
+
+- name: Import tasks for reset UFW
+  ansible.builtin.import_tasks:
+    file: "99-reset-ufw.yml"
+  tags:
+    - never
+    - ufw-node-reset
+  when:
+    - "'ufw-node-reset' in ansible_run_tags"

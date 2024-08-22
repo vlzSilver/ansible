@@ -1,0 +1,12 @@
+---
+
+- name: UFW Work with ports
+  community.general.ufw:
+    rule: "{{ item.0.rule }}"
+    port: "{{ item.1 }}"
+    proto: "{{ item.0.name }}"
+  with_subelements:
+    - "{{ ports_control }}"
+    - number_port
+  register: __ports_rule_changed
+  notify: Reload ufw on change
