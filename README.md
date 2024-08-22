@@ -81,6 +81,7 @@ For remove Docker use:
 This role is example how to use UFW rule by ansible
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
+
      ports_control:
        - name: tcp
          rule : allow
