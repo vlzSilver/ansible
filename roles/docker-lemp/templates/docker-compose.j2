@@ -9,7 +9,7 @@ services:
     ports:
       - {{ nginx_external_port }}:{{ nginx_internal_port }}
     volumes:
-      - {{ lemp_node }}/nginx/confd:/etc/nginx/conf.d
+      - {{ lemp_node }}/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - {{ docker_service_network_name }}
     depends_on: # запуск контейнера зависить от
