@@ -2,7 +2,7 @@
 <html>
 <body>
 <center>
-<h1>Welcome to custom nginx page!</h1>
+<h1>Welcome to docker-lemp Ansible test site!</h1>
 </body>
 </html>
 <br>
