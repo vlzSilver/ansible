@@ -7,6 +7,15 @@
       - docker-compose.yml
   register: __output_lemp_down
 
+- name: Remove custom images
+  community.docker.docker_image:
+    state: absent
+    name: "{{ item }}"
+    tag: latest
+  loop:
+    - lemp-nginx
+    - lemp-php-fpm
+
 - name: Show results down
   ansible.builtin.debug:
     var: __output_lemp_down
