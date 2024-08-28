@@ -1,0 +1,24 @@
+---
+lemp_node_docker_compose: "/opt/docker"
+lemp_node_docker_compose_app: "{{ lemp_node_docker_compose }}/lemp"
+lemp_node: "/opt/lemp"
+
+docker_service_network_name: test-lemp
+docker_service_network_type: bridge
+
+nginx_container_name : nginx-lemp
+php_container_name   : php-fpm-lemp
+mysql_container_name : mysql-lemp
+
+
+nginx_internal_port  : 80
+nginx_external_port  : 8080
+
+test_site_domain_name     : "{{ ansible_hostname }}.local"
+
+mysql_root_password: "TestPas123#"
+mysql_default_port: 3306
+
+mysql_environment:
+  - "MYSQL_ROOT_PASSWORD={{ mysql_root_password }}"
+  - "MYSQL_TCP_PORT={{ mysql_default_port }}"
