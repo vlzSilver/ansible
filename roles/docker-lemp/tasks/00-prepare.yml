@@ -10,7 +10,7 @@
     - { path: "{{ lemp_node_docker_compose_app }}" }
     - { path: "{{ lemp_node }}" }
     - { path: "{{ lemp_node_docker_compose_app }}/files" }
-    - { path: "{{ lemp_node }}/confd" }
+    - { path: "{{ lemp_node }}/nginx/confd" }
     - { path: "{{ lemp_node }}/mysql" }
 
 

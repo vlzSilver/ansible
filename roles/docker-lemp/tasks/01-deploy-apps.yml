@@ -11,7 +11,7 @@
 - name: Copy Nginx site conf from template
   ansible.builtin.template:
     src: "nginx-example-site.j2"
-    dest: "{{ lemp_node }}/confd/test_site.conf"
+    dest: "{{ lemp_node }}/nginx/confd/test_site.conf"
     mode: '0600'
     owner: root
     group: root

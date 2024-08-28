@@ -9,7 +9,7 @@ services:
     ports:
       - {{ nginx_external_port }}:{{ nginx_internal_port }}
     volumes:
-      - /opt/nginx/confd:/etc/nginx/conf.d
+      - {{ lemp_node }}/nginx/confd:/etc/nginx/conf.d
     networks:
       - {{ docker_service_network_name }}
     depends_on: # запуск контейнера зависить от
@@ -52,7 +52,7 @@ services:
     networks:
       - {{ docker_service_network_name }}
     volumes:
-      - /opt/lemp/mysql:/var/lib/mysql
+      - {{ lemp_node }}/mysql:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 30s

@@ -5,6 +5,7 @@
     state: absent
     files:
       - docker-compose.yml
+  ignore_errors: True
   register: __output_lemp_down
 
 - name: Remove custom images
@@ -15,6 +16,7 @@
   loop:
     - lemp-nginx
     - lemp-php-fpm
+  ignore_errors: True
 
 - name: Show results down
   ansible.builtin.debug:
@@ -27,3 +29,4 @@
   loop:
     - { path: "{{ lemp_node_docker_compose_app }}" }
     - { path: "{{ lemp_node }}" }
+  ignore_errors: True
