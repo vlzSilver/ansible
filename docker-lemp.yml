@@ -1,7 +1,0 @@
----
-- name: Deploy Docker Lemp
-  hosts: ubTest2
-  become: true
-  roles:
-    - docker-lemp
-
