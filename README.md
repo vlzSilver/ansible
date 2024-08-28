@@ -114,9 +114,9 @@ Deploy LEMP with test site using docker compose
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-     lemp_node_docker_compose: "/opt/docker" # where compose work dir
-     lemp_node_docker_compose_app: "{{ lemp_node_docker_compose }}/lemp"
-     lemp_node: "/opt/lemp" # where services worked dir
+     lemp_node_docker_compose: "/opt/docker" # where main compose dir
+     lemp_node_docker_compose_app: "{{ lemp_node_docker_compose }}/lemp" # where lemp compose work dir
+     lemp_node: "/opt/lemp" # where services working dir
 
      docker_service_network_name: test-lemp # docker network name for services
      docker_service_network_type: bridge # docker type network
@@ -124,7 +124,6 @@ Available variables are listed below, along with default values (see `defaults/m
      nginx_container_name : nginx-lemp
      php_container_name   : php-fpm-lemp
      mysql_container_name : mysql-lemp
-
 
      nginx_internal_port  : 80 # conatiner port
      nginx_external_port  : 8080 # external port
