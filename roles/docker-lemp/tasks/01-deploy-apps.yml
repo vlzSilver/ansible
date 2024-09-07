@@ -1,5 +1,5 @@
 ---
-- name: Copy docker compose for LEMP
+- name: Create docker compose for LEMP from template
   ansible.builtin.template:
     src: "docker-compose.j2"
     dest: "{{ lemp_node_docker_compose_app }}/docker-compose.yml"
@@ -8,7 +8,7 @@
     group: root
   register: __lemp_node_docker_compose_file
 
-- name: Copy Nginx site conf from template
+- name: Create Nginx site conf from template
   ansible.builtin.template:
     src: "nginx-example-site.j2"
     dest: "{{ lemp_node }}/nginx/conf.d/test_site.conf"
@@ -17,13 +17,7 @@
     group: root
   register: __lemp_nginx_site_conf_file
 
-
-- name: Copy required files
-  ansible.builtin.copy:
-    src: ./
-    dest: "{{ lemp_node_docker_compose_app }}/files"
-
-- name: Copy test_connection.php from template
+- name: Create test_connection.php from template
   ansible.builtin.template:
     src: "test_connection.j2"
     dest: "{{ lemp_node_docker_compose_app }}/files/example-site/test_connection.php"
@@ -31,6 +25,11 @@
     owner: root
     group: root
   register: __lemp_nginx_site_conf_file
+
+- name: Copy required files
+  ansible.builtin.copy:
+    src: ./
+    dest: "{{ lemp_node_docker_compose_app }}/files"
 
 - name: Restart docker compose for LEMP
   community.docker.docker_compose_v2:
